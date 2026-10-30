@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MOODIFY — How are you feeling?</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="background">
+        <div class="blob one"></div>
+        <div class="blob two"></div>
+        <div class="noise"></div>
+    </div>
+
+
+    <!-- ================= NAVBAR SECTION ================= -->
+    <section class="navbar-section">
+    <nav class="navbar">
+
+        <a href="#home" class="logo">
+            MOOD<span>IFY</span>
+        </a>
+
+        <div class="nav-menu">
+            <a href="#home" class="nav-link">HOME</a>
+            <a href="#moods" class="nav-link">MOODS</a>
+            <a href="#discover" class="nav-link">DISCOVER</a>
+            <a href="#about" class="nav-link">ABOUT</a>
+        </div>
+
+    </nav>
+</section>
+
+
+    <main>
+        <section id="home" class="hero">
+
+        <div class="small-title">
+            MUSIC × EMOTION
+        </div>
+
+        <h1>
+            HOW ARE<br>
+            YOU FEELING?
+        </h1>
+
+        <p class="subtitle">
+            Your mood changes. Your music should too.
+            Choose how you feel and let us find a song
+            that fits your moment.
+        </p>
+
+
+        </section>
+
+        <section id="moods" class="content-section moods-section">
+            <div class="section-heading">
+                <span class="section-kicker">START WITH A FEELING</span>
+                <h2>What is your mood?</h2>
+                <p>Pick the feeling that fits this moment.</p>
+            </div>
+
+            <div class="moods">
+
+            <button class="mood-btn" onclick="selectMood('happy')">
+                😊 HAPPY
+            </button>
+
+            <button class="mood-btn" onclick="selectMood('chill')">
+                😌 CHILL
+            </button>
+
+            <button class="mood-btn" onclick="selectMood('sad')">
+                💔 SAD
+            </button>
+
+            <button class="mood-btn" onclick="selectMood('love')">
+                ❤️ LOVE
+            </button>
+
+            <button class="mood-btn" onclick="selectMood('angry')">
+                😈 ANGRY
+            </button>
+
+            </div>
+        </section>
+
+
+        <section id="discover" class="content-section discover-section">
+            <div class="section-heading">
+                <span class="section-kicker">YOUR NEXT LISTEN</span>
+                <h2>Discover your match</h2>
+                <p>Your song recommendation will appear here after you choose a mood.</p>
+            </div>
+
+            <div id="result" class="result">
+
+            <div class="result-label">
+                YOUR MOOD MATCH
+            </div>
+
+            <div class="music-card">
+
+                <div class="album" id="album">
+                    🎵
+                </div>
+
+                <div class="music-info">
+
+                    <div class="music-mood" id="musicMood">
+                        HAPPY
+                    </div>
+
+                    <h2 class="song-title" id="songTitle">
+                        Levitating
+                    </h2>
+
+                    <div class="artist" id="artist">
+                        Dua Lipa
+                    </div>
+
+                    <p class="description" id="description">
+                        A bright and energetic track for moments
+                        when everything feels good.
+                    </p>
+
+                    <div class="actions">
+
+                        <button class="play-btn" onclick="playSong()">
+                            ▶ PLAY ON YOUTUBE
+                        </button>
+
+                        <button class="another-btn" onclick="randomSong()">
+                            ↻ ANOTHER SONG
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            </div>
+        </section>
+
+        <section id="about" class="content-section about">
+            <div class="about-content">
+                <span class="section-kicker">ABOUT THE PROJECT</span>
+
+                <h2>Music for every version of you.</h2>
+
+                <p>
+                    MOODIFY connects how you feel with music that fits the moment.
+                    Choose a mood, explore a recommendation, and find a soundtrack
+                    for whatever today brings.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        const music = {
+
+            happy: [
+                {
+                    title: "Levitating",
+                    artist: "Dua Lipa",
+                    emoji: "✨",
+                    description:
+                    "A bright and energetic track for moments when everything feels good."
+                },
+                {
+                    title: "Good Time",
+                    artist: "Owl City & Carly Rae Jepsen",
+                    emoji: "☀️",
+                    description:
+                    "Pure feel-good energy for turning an ordinary day into a good one."
+                },
+                {
+                    title: "Walking On Sunshine",
+                    artist: "Katrina & The Waves",
+                    emoji: "🌈",
+                    description:
+                    "A classic happy song that instantly brings positive energy."
+                }
+            ],
+
+            chill: [
+                {
+                    title: "Lowkey",
+                    artist: "NIKI",
+                    emoji: "🌙",
+                    description:
+                    "Smooth and relaxed vibes for quiet moments and late nights."
+                },
+                {
+                    title: "Sunset Lover",
+                    artist: "Petit Biscuit",
+                    emoji: "🌅",
+                    description:
+                    "Perfect background music for watching the world slow down."
+                },
+                {
+                    title: "Pink + White",
+                    artist: "Frank Ocean",
+                    emoji: "☁️",
+                    description:
+                    "Dreamy sounds for when you just want to relax and disappear."
+                }
+            ],
+
+            sad: [
+                {
+                    title: "Bittersweet",
+                    artist: "Madison Beer",
+                    emoji: "💧",
+                    description:
+                    "For those moments when happiness and sadness exist together."
+                },
+                {
+                    title: "Daisies",
+                    artist: "Justin Bieber",
+                    emoji: "🥀",
+                    description:
+                    "A soft emotional track for quiet and complicated feelings."
+                },
+                {
+                    title: "This Is Me Trying",
+                    artist: "Taylor Swift",
+                    emoji: "🌧️",
+                    description:
+                    "A song for moments when you're doing your best but nobody sees it."
+                }
+            ],
+
+            love: [
+                {
+                    title: "Adore You",
+                    artist: "Harry Styles",
+                    emoji: "❤️",
+                    description:
+                    "Warm and romantic energy for someone who makes your world better."
+                },
+                {
+                    title: "Every Summertime",
+                    artist: "NIKI",
+                    emoji: "💗",
+                    description:
+                    "A sweet nostalgic feeling that sounds like falling in love."
+                },
+                {
+                    title: "Until I Found You",
+                    artist: "Stephen Sanchez",
+                    emoji: "💌",
+                    description:
+                    "Old-school romance for the hopeless romantic inside you."
+                }
+            ],
+
+            angry: [
+                {
+                    title: "bad guy",
+                    artist: "Billie Eilish",
+                    emoji: "🔥",
+                    description:
+                    "Dark, confident and unapologetic energy for your angry side."
+                },
+                {
+                    title: "Don't Start Now",
+                    artist: "Dua Lipa",
+                    emoji: "⚡",
+                    description:
+                    "Turn your frustration into confidence and keep moving forward."
+                },
+                {
+                    title: "Look What You Made Me Do",
+                    artist: "Taylor Swift",
+                    emoji: "😈",
+                    description:
+                    "For when you are done explaining yourself to everyone."
+                }
+            ]
+        };
+
+
+        let currentMood = "";
+        let currentSongIndex = 0;
+
+
+        function selectMood(mood) {
+
+            currentMood = mood;
+            currentSongIndex = 0;
+
+            document.body.classList.remove(
+                "mood-happy",
+                "mood-chill",
+                "mood-sad",
+                "mood-love",
+                "mood-angry"
+            );
+
+            document.body.classList.add("mood-" + mood);
+
+            showSong();
+
+            document.getElementById("result").style.display =
+                "block";
+
+            setTimeout(() => {
+
+                document.getElementById("result")
+                    .scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+            }, 100);
+        }
+
+
+        function showSong() {
+
+            const songs = music[currentMood];
+            const song = songs[currentSongIndex];
+
+            document.getElementById("songTitle").textContent =
+                song.title;
+
+            document.getElementById("artist").textContent =
+                song.artist;
+
+            document.getElementById("description").textContent =
+                song.description;
+
+            document.getElementById("musicMood").textContent =
+                currentMood.toUpperCase();
+
+            document.getElementById("album").textContent =
+                song.emoji;
+
+            document.getElementById("album").className =
+                "album mood-album-" + currentMood;
+        }
+
+
+        function randomSong() {
+
+            const songs = music[currentMood];
+
+            let newIndex;
+
+            do {
+
+                newIndex =
+                    Math.floor(Math.random() * songs.length);
+
+            } while (
+                songs.length > 1 &&
+                newIndex === currentSongIndex
+            );
+
+            currentSongIndex = newIndex;
+
+            showSong();
+        }
+
+
+        function playSong() {
+            if (!currentMood) {
+                alert("Please choose a mood first.");
+                return;
+            }
+
+            const song = music[currentMood][currentSongIndex];
+            const searchText = song.title + " " + song.artist;
+            const youtubeUrl =
+                "https://www.youtube.com/results?search_query=" +
+                encodeURIComponent(searchText);
+
+            window.open(youtubeUrl, "_blank", "noopener,noreferrer");
+        }
+
+
+    </script>
+
+</body>
+</html>
